@@ -251,23 +251,68 @@ public class LinkedList{
 //        it will give the node next to 0 value as taken for starting Value for the helper Node we will treat the below return node as head reference to accsess  the mergeSorted Linked List in the HEAP memory;
 //        return helperNode.next;
     }
+
+
+
+//    Leetcode #2---  Add two number stored in two linked List each node of The Linked List consist of onr digit of number stored in reverse order
+
+
+    static LinkedList addNumbersInLinkedList(LinkedList A,LinkedList B){
+        Node firstPtr=A.head;
+        Node secondPtr=B.head;
+        LinkedList sum=new LinkedList();
+        int carry=0;
+        int rem=0;
+        while(firstPtr!=null && secondPtr!= null){
+            rem=(firstPtr.data+secondPtr.data)%10;
+            carry=(firstPtr.data+secondPtr.data)/10;
+            sum.insert(rem);
+
+
+            firstPtr=firstPtr.next;
+            secondPtr=secondPtr.next;
+            if(firstPtr==null || secondPtr==null){
+                break;
+            }
+            else{
+                firstPtr.data= firstPtr.data+carry;
+            }
+
+        }
+
+        while(firstPtr!=null){
+            sum.insert(firstPtr.data+carry);
+            firstPtr=firstPtr.next;
+        }
+
+        while(secondPtr!=null){
+            sum.insert(secondPtr.data+carry);
+            secondPtr=secondPtr.next;
+        }
+        if(carry>0){
+            sum.insert(carry);
+        }
+
+        sum.show();
+        return sum;
+    }
     public static void main(String []args){
-        LinkedList list=new LinkedList();
-        list.insert(5);
-        list.insert(10);
-        list.insert(15);
-        list.insert(23);
-        list.insert(25);
-        list.insert(35);
-
-
-LinkedList secondList=new LinkedList();
-secondList.insert(13);
-        secondList.insert(22);
-        secondList.insert(24);
-        secondList.insert(45);
-
-       mergeTwoSortedLinkedList(list,secondList);
+//        LinkedList list=new LinkedList();
+//        list.insert(5);
+//        list.insert(10);
+//        list.insert(15);
+//        list.insert(23);
+//        list.insert(25);
+//        list.insert(35);
+//
+//
+//LinkedList secondList=new LinkedList();
+//secondList.insert(13);
+//        secondList.insert(22);
+//        secondList.insert(24);
+//        secondList.insert(45);
+//
+//       mergeTwoSortedLinkedList(list,secondList);
 //        list.delete(23);
 //        list.reverseLinkedList();
 //
@@ -283,6 +328,21 @@ secondList.insert(13);
 //        System.out.println(list.startingOfLoop().data);
 //        list.removeLoop();
 //        secondList.show();
+
+        LinkedList A=new LinkedList();
+//        A contain number 543 in reverse order
+        A.insert(3);
+        A.insert(4);
+        A.insert(5);
+
+        LinkedList B=new LinkedList();
+//        B contain number 765 in reverse order
+        B.insert(5);
+        B.insert(6);
+        B.insert(7);
+
+//        Result should be a LinkedList having 1308 in reverse order
+        addNumbersInLinkedList(A,B);
     }
 
 }
