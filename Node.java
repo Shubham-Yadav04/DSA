@@ -1,4 +1,4 @@
-public class Node {
+ class Node {
 
         int data;
         Node next;
@@ -7,6 +7,14 @@ public class Node {
             this.data = data;
         }
 
+}
+ class DoublyNode{
+    int data;
+    DoublyNode next;
+    DoublyNode previous;
+    DoublyNode(int data){
+        this.data=data;
+    }
 }
 
 
